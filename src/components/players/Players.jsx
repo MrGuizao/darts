@@ -1,13 +1,27 @@
 import React from "react";
 import "./player.css";
 
-export default function Players({ number, player1, player2 }) {
+import MiddleMenu from "../menu/MiddleMenu";
+
+export default function Players({ number, total, current }) {
+     function randomNumber(){
+          return Math.round(Math.random() * 5) + 1;
+     }
+     function lowDice() {
+          return require(`../../images/dice-${randomNumber()}.png`);
+     }
+     function totalScore(){
+          return total += randomNumber();
+     }
+
      return (
-          <div className="dashboard-player">
-               <h2>Player {number}</h2>
-               <img src={require(`../../images/dice-${Math.round(Math.random() * 5) + 1}.png`)} alt="" />
-               <h3>Score: </h3>
-               <button>Girar dado</button>
-          </div>
+          <>
+               <MiddleMenu lowDice={lowDice} />
+               <div className="dashboard-player">
+                    <h2>Player {number}</h2>
+                    <h3>Score: {totalScore()}</h3>
+                    <h3>Atual: {current}</h3>
+               </div>
+          </>
      );
 }
