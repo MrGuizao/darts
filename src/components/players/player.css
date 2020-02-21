@@ -1,6 +1,5 @@
 .dashboard-player {
      text-align: center;
-     background-color: #e7e7e720;
      width: 50%;
      height: 100%;
      display: flex;
@@ -8,9 +7,9 @@
      flex-flow: column nowrap;
      padding: 20px 0 80px;
 }
-.dashboard-player:hover {
+/* .dashboard-player:hover {
      background-color: #e7e7e735;
-}
+} */
 .dashboard-player h2,
 h3 {
      color: white;
