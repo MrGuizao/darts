@@ -1,15 +1,12 @@
-import React, { useState } from "react";
-import "./middlemenu.css";
+import React from "react";
 
-export default function MiddleMenu({ lowDice }) {
-     const [dice, setDice] = useState(lowDice);
-
+export default function MiddleMenu({ newGame, imgDice, UpdateScores, stopDice }) {
      return (
           <div className="menu">
-               <button>New Game</button>
-               <img src={dice} alt="" />
-               <button onClick={() => setDice(lowDice())}>Girar Dado</button>
-               <button>Parar Dado</button>
+               <button onClick={newGame}>New Game</button>
+               <img src={imgDice()} alt="" />
+               <button onClick={UpdateScores}>Roll dice</button>
+               <button onClick={stopDice}>Stop dice</button>
           </div>
      );
 }

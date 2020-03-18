@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import "./App.css";
 import Players from "./components/players/Players";
-import { act } from 'react-dom/test-utils';
+import MiddleMenu from './components/menu/MiddleMenu';
+import Winner from './components/winner/Winner';
 
 export default class App extends Component {
      state = {
@@ -24,6 +25,19 @@ export default class App extends Component {
           (this.state.activePlayer === true) ?
                this.setState(state => { current1: state.current1 += state.dice }) :
                this.setState(state => { current2: state.current2 += state.dice });
+
+
+
+     }
+
+     winGame = () => {
+          if (this.state.total1 >= 100) {
+               return <Winner id="1" />
+          }
+          if (this.state.total2 >= 100) {
+               return <Winner id="2" />
+          }
+
      }
 
      stopDice = () => {
@@ -41,28 +55,17 @@ export default class App extends Component {
 
      }
 
-     // this.setState(prevState => ({
-     //      array: [...prevState.array, newElement]
-     //  }))
-
      render() {
           const { total1, total2, current1, current2, activePlayer } = this.state;
           return (
                <div className="App">
                     <h1>BOARD GAME</h1>
                     <main>
-                         <Players key="1" id="1" total={total1} current={current1} active={activePlayer}/>
-                         <Players key="2" id="2" total={total2} current={current2} />
-                         {/* {
-                              this.state.players.map(play => <Players key={play.id} id={play.id} players={this.state.players} />)
-                         } */}
+                         <Players key="1" id="1" total={total1} current={current1} active={activePlayer} />
+                         <Players key="2" id="2" total={total2} current={current2} active={activePlayer} />
+                         {this.winGame()}
                     </main>
-                    <div className="menu">
-                         <button>New Game</button>
-                         <img src={this.imgDice()} alt="" />
-                         <button onClick={this.UpdateScores}>Roll dice</button>
-                         <button onClick={this.stopDice}>Stop dice</button>
-                    </div>
+                    <MiddleMenu newGame={this.newGame} stopDice={this.stopDice} imgDice={this.imgDice} UpdateScores={this.UpdateScores} />
                </div>
           )
      }
